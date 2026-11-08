@@ -119,10 +119,10 @@ header {
 }
 
 .calendar-search input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* カレンダーアイコンを白くする */
+  filter: invert(1);
 }
 
-/* 作品カード内のメタ情報表示 */
+/* 作品カード内のメタ情報表示（画像の下に小さく配置） */
 .work-info {
   padding: 8px 10px;
   display: flex;
@@ -139,7 +139,7 @@ header {
   color: #aaaaaa;
 }
 
-/* スクロール位置調整用のハイライト効果（ジャンプ時） */
+/* ジャンプ時のハイライト効果 */
 .work-card.highlight {
   outline: 2px solid #ffffff;
   transition: outline 0.5s ease;
