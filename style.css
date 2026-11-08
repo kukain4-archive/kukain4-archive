@@ -96,3 +96,51 @@ header {
 .work-date {
   font-family: monospace;
 }
+
+/* カレンダージャンプエリア */
+.calendar-search {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: #888888;
+}
+
+.calendar-search input[type="date"] {
+  background-color: #111111;
+  color: #ffffff;
+  border: 1px solid #333333;
+  padding: 6px 12px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.calendar-search input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* カレンダーアイコンを白くする */
+}
+
+/* 作品カード内のメタ情報表示 */
+.work-info {
+  padding: 8px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #777777;
+  font-family: monospace;
+  background-color: #050505;
+  border-top: 1px solid #1a1a1a;
+}
+
+.work-number {
+  color: #aaaaaa;
+}
+
+/* スクロール位置調整用のハイライト効果（ジャンプ時） */
+.work-card.highlight {
+  outline: 2px solid #ffffff;
+  transition: outline 0.5s ease;
+}

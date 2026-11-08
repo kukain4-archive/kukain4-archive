@@ -21,48 +21,18 @@
     </div>
   </header>
 
-  <!-- メイン：作品モザイクグリッド -->
+ <!-- カレンダージャンプUI -->
+    <div class="calendar-search">
+      <label for="date-picker">JUMP TO DATE:</label>
+      <input type="date" id="date-picker">
+    </div>
+  </header>
+
   <main>
-    <section class="archive-grid">
-      
-      <!-- ダミー作品カード 1 -->
-      <a href="#" class="work-card">
-        <div class="work-thumbnail"></div>
-        <div class="work-info">
-          <span class="work-date">2026.11.08</span>
-          <span class="work-id">#001</span>
-        </div>
-      </a>
-
-      <!-- ダミー作品カード 2 -->
-      <a href="#" class="work-card">
-        <div class="work-thumbnail"></div>
-        <div class="work-info">
-          <span class="work-date">2026.11.07</span>
-          <span class="work-id">#002</span>
-        </div>
-      </a>
-
-      <!-- ダミー作品カード 3 -->
-      <a href="#" class="work-card">
-        <div class="work-thumbnail"></div>
-        <div class="work-info">
-          <span class="work-date">2026.11.06</span>
-          <span class="work-id">#003</span>
-        </div>
-      </a>
-
-      <!-- ダミー作品カード 4 -->
-      <a href="#" class="work-card">
-        <div class="work-thumbnail"></div>
-        <div class="work-info">
-          <span class="work-date">2026.11.05</span>
-          <span class="work-id">#004</span>
-        </div>
-      </a>
-
-    </section>
+    <!-- JavaScriptが自動で画像カードを生成して挿入するグリッド -->
+    <div class="archive-grid" id="artwork-grid"></div>
   </main>
 
+  <script src="script.js"></script>
 </body>
 </html>
