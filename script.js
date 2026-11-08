@@ -1,11 +1,4 @@
-// images フォルダに入っている実際のファイル名をここに並べます
-// （ファイル名に含まれている日付や連番を、プログラムが自動で読み取ります）
-const imageFiles = [
-  "000003_20240826.jpg",
-  "000002_20240825.jpg",
-  "000001_20240824.jpg"
-  // 新しい作品が上（左上）、古い作品が下（右下）になるように並べます
-];
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const gridContainer = document.getElementById("artwork-grid");
