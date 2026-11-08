@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const gridContainer = document.getElementById("artwork-grid");
   const datePicker = document.getElementById("date-picker");
@@ -9,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const nameWithoutExt = filename.substring(0, filename.lastIndexOf('.'));
     const parts = nameWithoutExt.split('_');
     
-    const numStr = parts[0];  // "000001"
-    const dateStr = parts[1]; // "20200801"
+    const numStr = parts[0];   // "000001"
+    const dateStr = parts[1];  // "20200801"
 
     // 表示用: 2020.08.01
     const formattedDate = `${dateStr.substring(0, 4)}.${dateStr.substring(4, 6)}.${dateStr.substring(6, 8)}`;
@@ -24,52 +22,52 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // 配列をファイル名順（新しいものが上＝左上、古いものが下＝右下）に配置
-  imageFiles.forEach(filename => {
-    const info = parseFilename(filename);
+  // file_list.js から読み込んだ imageFiles 配列でグリッドを生成
+  if (typeof imageFiles !== 'undefined' && Array.isArray(imageFiles)) {
+    imageFiles.forEach(filename => {
+      const info = parseFilename(filename);
 
-    const card = document.createElement("div");
-    card.className = "work-card";
-    card.dataset.date = info.isoDate; // 日付ジャンプ用の目印
+      const card = document.createElement("div");
+      card.className = "work-card";
+      card.dataset.date = info.isoDate;
 
-    card.innerHTML = `
-      <img src="images/${filename}" alt="Artwork ${info.number}" class="work-thumbnail" loading="lazy">
-      <div class="work-info">
-        <span class="work-number">${info.number}</span>
-        <span class="work-date">${info.dateDisplay}</span>
-      </div>
-    `;
+      card.innerHTML = `
+        <img src="images/${filename}" alt="Artwork ${info.number}" class="work-thumbnail" loading="lazy">
+        <div class="work-info">
+          <span class="work-number">${info.number}</span>
+          <span class="work-date">${info.dateDisplay}</span>
+        </div>
+      `;
 
-    gridContainer.appendChild(card);
-  });
+      gridContainer.appendChild(card);
+    });
+  }
 
   // カレンダーの日付変更時にその作品へジャンプする機能
-  datePicker.addEventListener("change", (e) => {
-    const selectedDate = e.target.value;
-    if (!selectedDate) return;
+  if (datePicker) {
+    datePicker.addEventListener("change", (e) => {
+      const selectedDate = e.target.value;
+      if (!selectedDate) return;
 
-    const cards = Array.from(document.querySelectorAll(".work-card"));
-    
-    // 一致する日付、または見つからない場合はその日より前の最も近い作品を検索
-    let targetCard = cards.find(card => card.dataset.date === selectedDate);
-    if (!targetCard) {
-      targetCard = cards.find(card => card.dataset.date < selectedDate);
-    }
-
-    if (targetCard) {
-      targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
+      const cards = Array.from(document.querySelectorAll(".work-card"));
       
-      cards.forEach(c => c.classList.remove("highlight"));
-      targetCard.classList.add("highlight");
-      setTimeout(() => targetCard.classList.remove("highlight"), 2000);
-    } else {
-      alert("No artwork found for this date.");
-    }
-  });
-});
+      // 選択した日付と完全一致するカードだけを探す
+      const targetCard = cards.find(card => card.dataset.date === selectedDate);
 
-// === 画像クリック時の拡大表示（モーダル）機能 ===
-document.addEventListener("DOMContentLoaded", () => {
+      if (targetCard) {
+        targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
+        
+        cards.forEach(c => c.classList.remove("highlight"));
+        targetCard.classList.add("highlight");
+        setTimeout(() => targetCard.classList.remove("highlight"), 2000);
+      } else {
+        // 完全一致する作品がない場合は英語でアラートを表示
+        alert("No artwork found for this date.");
+      }
+    });
+  }
+
+  // === 画像クリック時の拡大表示（モーダル）機能 ===
   const modal = document.createElement("div");
   modal.className = "image-modal";
   modal.innerHTML = `
@@ -88,22 +86,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalNumber = modal.querySelector(".modal-number");
   const modalDate = modal.querySelector(".modal-date");
 
-  const gridContainer = document.getElementById("artwork-grid");
-  gridContainer.addEventListener("click", (e) => {
-    const card = e.target.closest(".work-card");
-    if (!card) return;
+  if (gridContainer) {
+    gridContainer.addEventListener("click", (e) => {
+      const card = e.target.closest(".work-card");
+      if (!card) return;
 
-    const img = card.querySelector(".work-thumbnail");
-    const numberText = card.querySelector(".work-number").textContent;
-    const dateText = card.querySelector(".work-date").textContent;
+      const img = card.querySelector(".work-thumbnail");
+      const numberText = card.querySelector(".work-number").textContent;
+      const dateText = card.querySelector(".work-date").textContent;
 
-    if (img) {
-      modalImg.src = img.src;
-      modalNumber.textContent = numberText;
-      modalDate.textContent = dateText;
-      modal.style.display = "flex";
-    }
-  });
+      if (img) {
+        modalImg.src = img.src;
+        modalNumber.textContent = numberText;
+        modalDate.textContent = dateText;
+        modal.style.display = "flex";
+      }
+    });
+  }
 
   modal.addEventListener("click", () => {
     modal.style.display = "none";

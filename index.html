@@ -3,36 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARTWORK ARCHIVE</title>
-  <!-- style.cssを読み込む -->
+  <title>YOUR NAME — Abstract Calligraphy Archive</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ヘッダー：プロフィール＆連絡先 -->
-  <header>
-    <h1 class="site-title">ARTWORK ARCHIVE</h1>
-    <p class="profile-text">
-      Abstract art based on Japanese calligraphy.
-    </p>
-    <div class="contact-links">
-      <a href="#" target="_blank">Instagram</a>
-      <a href="#" target="_blank">Contact / Email</a>
+  <!-- 固定ヘッダー（左：タイトル / 右：メニュー） -->
+  <header class="site-header">
+    <div class="site-branding">
+      <a href="#" class="site-title">YOUR NAME</a>
     </div>
-
-    <!-- カレンダージャンプUI（headerの中に収めるか、外に出す） -->
-    <div class="calendar-search">
-      <label for="date-picker">JUMP TO DATE:</label>
-      <input type="date" id="date-picker">
-    </div>
+    <nav class="site-nav">
+      <a href="#hero">HOME</a>
+      <a href="#works">WORKS</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
   </header>
 
-  <main>
-    <!-- JavaScriptが自動で画像カードを生成して挿入するグリッド -->
-    <div class="archive-grid" id="artwork-grid"></div>
+  <!-- 1. 大まかな表紙（ファーストビュー）エリア -->
+  <section id="hero" class="hero-section">
+    <div class="hero-content">
+      <h2 class="hero-tagline">Abstract art based on Japanese calligraphy.</h2>
+      <p class="hero-sub">Explore the continuous archive.</p>
+      <a href="#works" class="hero-scroll-btn">ENTER ARCHIVE ↓</a>
+    </div>
+  </section>
+
+  <!-- メインコンテンツ（左右にたっぷり余白を取るコンテナ） -->
+  <main class="main-container">
+
+    <!-- 2. 作品アーカイブセクション -->
+    <section id="works" class="archive-section">
+      <div class="section-header">
+        <h3 class="section-heading">WORKS ARCHIVE</h3>
+        <!-- カレンダージャンプUI -->
+        <div class="calendar-search">
+          <label for="date-picker">JUMP TO DATE:</label>
+          <input type="date" id="date-picker">
+        </div>
+      </div>
+
+      <!-- 3列グリッド（JavaScriptが自動生成） -->
+      <div class="archive-grid" id="artwork-grid"></div>
+    </section>
+
+    <!-- 3. ABOUT セクション（後から文章を変更可能） -->
+    <section id="about" class="info-section">
+      <h3 class="section-heading">ABOUT</h3>
+      <div class="info-body">
+        <p>ここに作者のプロフィールやステートメント、経歴などを記載できます。後から自由にテキストを変更可能です。</p>
+      </div>
+    </section>
+
+    <!-- 4. CONTACT セクション（後からリンクやアドレスを変更可能） -->
+    <section id="contact" class="info-section">
+      <h3 class="section-heading">CONTACT</h3>
+      <div class="info-body">
+        <p>For inquiries, commissions, or exhibition requests, please contact via email or social channels below.</p>
+        <p class="contact-email"><a href="mailto:your-email@example.com">your-email@example.com</a></p>
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+          <a href="#" target="_blank" rel="noopener">Ko-fi</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- スクリプトの読み込み（重複を解消） -->
+  <!-- フッター -->
+  <footer class="site-footer">
+    <p>&copy; YOUR NAME. All rights reserved.</p>
+  </footer>
+
   <script src="file_list.js"></script>
   <script src="script.js"></script>
 </body>

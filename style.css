@@ -1,148 +1,230 @@
-/* 全体の基本設定（モノクロ・シンプル） */
+/* --- ベース設定 --- */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth; /* メニュークリック時のスムーズスクロール */
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: #000000;
-  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
   line-height: 1.6;
-  padding: 20px;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ヘッダー・プロフィール領域 */
-header {
-  max-width: 1200px;
-  margin: 0 auto 60px auto;
-  padding: 40px 0 20px 0;
-  border-bottom: 1px solid #333333;
-}
-
-.site-title {
-  font-size: 1.8rem;
-  font-weight: 300;
-  letter-spacing: 0.15em;
-  margin-bottom: 12px;
-  text-transform: uppercase;
-}
-
-.profile-text {
-  font-size: 0.9rem;
-  color: #a0a0a0;
-  max-width: 600px;
-  margin-bottom: 16px;
-}
-
-.contact-links a {
-  color: #ffffff;
+a {
+  color: inherit;
   text-decoration: none;
-  font-size: 0.85rem;
-  margin-right: 20px;
-  border-bottom: 1px solid #ffffff;
   transition: opacity 0.2s ease;
 }
 
-.contact-links a:hover {
+a:hover {
   opacity: 0.6;
 }
 
-/* モザイク・グリッドレイアウト（スマホ含む3列固定） */
-.archive-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* 各作品カードのスタイル */
-.work-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  background-color: #111111;
-  overflow: hidden;
-  position: relative;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.work-card:hover {
-  opacity: 0.85;
-}
-
-/* 正方形のサムネイル枠 */
-.work-thumbnail {
+/* --- ヘッダー --- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  background-color: #222222;
-  object-fit: cover;
-  display: block;
-}
-
-/* 作品情報のテキスト */
-.work-info {
-  padding: 10px 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.75rem;
-  color: #888888;
-  background-color: #050505;
+  padding: 30px 60px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(5px);
+  z-index: 900;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.work-date {
-  font-family: monospace;
+.site-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
-/* カレンダージャンプエリア */
+.site-nav {
+  display: flex;
+  gap: 35px;
+}
+
+.site-nav a {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  font-weight: 300;
+  color: #555;
+  text-transform: uppercase;
+}
+
+.site-nav a:hover {
+  color: #000;
+}
+
+/* --- 1. 大まかな表紙（ヒーローセクション） --- */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #0d0d0d; /* アーティストサイトらしい引き締まったダーク背景（白背景にしたい場合は #fff に変更可能） */
+  color: #ffffff;
+  padding: 0 20px;
+}
+
+.hero-tagline {
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+.hero-sub {
+  font-size: 0.95rem;
+  color: #999;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+}
+
+.hero-scroll-btn {
+  display: inline-block;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding-bottom: 4px;
+}
+
+/* --- メインコンテナ（PCで左右に十分な余白を持たせる設定） --- */
+.main-container {
+  max-width: 1500px;         /* 全体の最大幅 */
+  margin: 0 auto;            /* 左右中央寄せ */
+  padding: 100px 80px 140px 80px; /* 左右にたっぷり 80px の余白を確保 */
+}
+
+/* セクション共通見出し */
+.section_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+.section-heading {
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  font-weight: 500;
+  color: #888;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+/* カレンダー検索UI */
+.archive-controls, .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
 .calendar-search {
-  margin-top: 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.8rem;
-  color: #888888;
+  gap: 12px;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #666;
 }
 
 .calendar-search input[type="date"] {
-  background-color: #111111;
-  color: #ffffff;
-  border: 1px solid #333333;
+  border: 1px solid #ddd;
+  background: transparent;
   padding: 6px 12px;
-  font-family: monospace;
-  font-size: 0.85rem;
+  font-family: inherit;
+  font-size: 0.8rem;
   outline: none;
+  color: #333;
+}
+
+/* --- 3列グリッドレイアウト --- */
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px; /* カード同士の間隔も贅沢に取る */
+}
+
+.work-card {
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
-.calendar-search input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1);
+.work-thumbnail {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease;
 }
 
-/* 作品カード内のメタ情報表示（画像の下に小さく配置） */
+.work-card:hover .work-thumbnail {
+  opacity: 0.85;
+}
+
 .work-info {
-  padding: 8px 10px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-size: 0.7rem;
-  color: #777777;
-  font-family: monospace;
-  background-color: #050505;
-  border-top: 1px solid #1a1a1a;
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
 
-.work-number {
-  color: #aaaaaa;
+/* --- ABOUT & CONTACT セクション --- */
+.info-section {
+  margin-top: 140px;
+  padding-top: 60px;
+  border-top: 1px solid #eee;
+  max-width: 800px; /* テキストは読みやすいように少し幅を絞る */
 }
 
-/* ジャンプ時のハイライト効果 */
-.work-card.highlight {
-  outline: 2px solid #ffffff;
-  transition: outline 0.5s ease;
+.info-body {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #444;
+  line-height: 1.8;
+}
+
+.contact-email {
+  margin-top: 20px;
+  font-weight: 400;
+}
+
+.social-links {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+/* --- フッター --- */
+.site-footer {
+  text-align: center;
+  padding: 60px 0;
+  font-size: 0.75rem;
+  color: #aaa;
+  letter-spacing: 2px;
+  border-top: 1px solid #f0f0f0;
 }
 
 /* --- モーダル（拡大表示）のスタイル --- */
@@ -162,7 +244,6 @@ header {
   padding: 20px;
 }
 
-/* 画像とキャプションをひとまとめにするコンテナ */
 .modal-container {
   display: flex;
   flex-direction: column;
@@ -178,15 +259,14 @@ header {
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
 }
 
-/* 拡大画面下の作品情報：左に連番、右に日付を配置 */
 .modal-info {
   width: 100%;
   margin-top: 14px;
   display: flex;
-  justify-content: space-between; /* 左右に振り分ける */
+  justify-content: space-between;
   align-items: center;
   color: rgba(255, 255, 255, 0.9);
-  font-size: 1.15rem;                 /* しっかり読めるサイズ感 */
+  font-size: 1.15rem;
   font-weight: 300;
   letter-spacing: 2px;
   pointer-events: none;
@@ -199,4 +279,29 @@ header {
   color: rgba(255, 255, 255, 0.7);
   font-size: 2.2rem;
   pointer-events: none;
+}
+
+/* --- レスポンシブ（スマホ対応） --- */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 20px;
+  }
+  .site-nav {
+    gap: 15px;
+  }
+  .site-nav a {
+    font-size: 0.7rem;
+  }
+  .main-container {
+    padding: 60px 20px 80px 20px; /* スマホでは左右の余白を狭くする */
+  }
+  .archive-grid {
+    grid-template-columns: 1fr; /* スマホでは1列に */
+    gap: 30px;
+  }
+  .section-header, .archive-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
 }
