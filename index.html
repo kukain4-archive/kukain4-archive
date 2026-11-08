@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARTWORK ARCHIVE</title>
-  <!-- 先ほど作成したstyle.cssを読み込む -->
+  <!-- style.cssを読み込む -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,9 +19,8 @@
       <a href="#" target="_blank">Instagram</a>
       <a href="#" target="_blank">Contact / Email</a>
     </div>
-  </header>
 
- <!-- カレンダージャンプUI -->
+    <!-- カレンダージャンプUI（headerの中に収めるか、外に出す） -->
     <div class="calendar-search">
       <label for="date-picker">JUMP TO DATE:</label>
       <input type="date" id="date-picker">
@@ -33,9 +32,8 @@
     <div class="archive-grid" id="artwork-grid"></div>
   </main>
 
-<script src="file_list.js"></script>
-<script src="script.js"></script>
-
+  <!-- スクリプトの読み込み（重複を解消） -->
+  <script src="file_list.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

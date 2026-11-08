@@ -144,3 +144,36 @@ header {
   outline: 2px solid #ffffff;
   transition: outline 0.5s ease;
 }
+
+/* --- モーダル（拡大表示）のスタイル --- */
+.image-modal {
+  display: none; /* 初期状態は非表示 */
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* 半透明の黒背景 */
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.image-modal img {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+.image-modal .close-hint {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: light;
+  pointer-events: none;
+}

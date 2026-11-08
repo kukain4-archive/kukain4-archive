@@ -67,3 +67,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// === 画像クリック時の拡大表示（モーダル）機能 ===
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. モーダル用のHTML要素を動的に作成してページに追加
+  const modal = document.createElement("div");
+  modal.className = "image-modal";
+  modal.innerHTML = `
+    <span class="close-hint">&times;</span>
+    <img src="" alt="Expanded View">
+  `;
+  document.body.appendChild(modal);
+
+  const modalImg = modal.querySelector("img");
+
+  // 2. グリッド内の画像またはカードがクリックされたとき
+  const gridContainer = document.getElementById("artwork-grid");
+  gridContainer.addEventListener("click", (e) => {
+    const card = e.target.closest(".work-card");
+    if (!card) return;
+
+    const img = card.querySelector(".work-thumbnail");
+    if (img) {
+      modalImg.src = img.src; // クリックされた画像のパスをモーダルに渡す
+      modal.style.display = "flex"; // モーダルを表示
+    }
+  });
+
+  // 3. モーダル（背景や画像）をクリックしたら閉じる
+  modal.addEventListener("click", () => {
+    modal.style.display = "none";
+    modalImg.src = "";
+  });
+});
