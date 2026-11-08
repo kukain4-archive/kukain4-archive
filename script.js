@@ -68,29 +68,41 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
 // === 画像クリック時の拡大表示（モーダル）機能 ===
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. モーダル用のHTML要素を動的に作成してページに追加
+  // 1. モーダル用のHTML要素を動的に作成してページに追加（情報表示エリアを内蔵）
   const modal = document.createElement("div");
   modal.className = "image-modal";
   modal.innerHTML = `
     <span class="close-hint">&times;</span>
     <img src="" alt="Expanded View">
+    <div class="modal-info">
+      <span class="modal-number"></span>
+      <span class="modal-date"></span>
+    </div>
   `;
   document.body.appendChild(modal);
 
   const modalImg = modal.querySelector("img");
+  const modalNumber = modal.querySelector(".modal-number");
+  const modalDate = modal.querySelector(".modal-date");
 
-  // 2. グリッド内の画像またはカードがクリックされたとき
+  // 2. グリッド内のカードがクリックされたとき
   const gridContainer = document.getElementById("artwork-grid");
   gridContainer.addEventListener("click", (e) => {
     const card = e.target.closest(".work-card");
     if (!card) return;
 
     const img = card.querySelector(".work-thumbnail");
+    const numberText = card.querySelector(".work-number").textContent;
+    const dateText = card.querySelector(".work-date").textContent;
+
     if (img) {
-      modalImg.src = img.src; // クリックされた画像のパスをモーダルに渡す
-      modal.style.display = "flex"; // モーダルを表示
+      modalImg.src = img.src;               // 画像のパスを渡す
+      modalNumber.textContent = numberText; // 連番を渡す (#000001 など)
+      modalDate.textContent = dateText;     // 日付を渡す (2024.08.24 など)
+      modal.style.display = "flex";         // モーダルを表示
     }
   });
 
@@ -98,5 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
   modal.addEventListener("click", () => {
     modal.style.display = "none";
     modalImg.src = "";
+    modalNumber.textContent = "";
+    modalDate.textContent = "";
   });
 });

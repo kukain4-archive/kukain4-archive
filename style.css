@@ -154,18 +154,31 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85); /* 半透明の黒背景 */
+  background-color: rgba(0, 0, 0, 0.95); /* 背景の透過を減らしてより黒くする */
+  flex-direction: column; /* 縦並びにして画像とテキストを入れる */
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  padding: 20px;
 }
 
 .image-modal img {
   max-width: 90%;
-  max-height: 90vh;
+  max-height: 80vh; /* テキストが入るスペースを空けるために少し調整 */
   object-fit: contain;
   border-radius: 4px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* 拡大画面下の作品情報（連番と日付） */
+.modal-info {
+  margin-top: 15px;
+  color: #fff;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  display: flex;
+  gap: 15px;
+  pointer-events: none; /* クリックが背景に抜けるようにする */
 }
 
 .image-modal .close-hint {
@@ -174,6 +187,5 @@ header {
   right: 30px;
   color: #fff;
   font-size: 2rem;
-  font-weight: light;
   pointer-events: none;
 }
