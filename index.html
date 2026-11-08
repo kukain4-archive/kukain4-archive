@@ -3,80 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YOUR NAME — Abstract Calligraphy Archive</title>
+  <title>YOUR NAME — Abstract Calligraphy</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home-body">
 
-  <!-- 固定ヘッダー（左：タイトル / 右：メニュー） -->
+  <!-- 固定ヘッダー -->
   <header class="site-header">
     <div class="site-branding">
-      <a href="#" class="site-title">YOUR NAME</a>
+      <a href="index.html" class="site-title">YOUR NAME</a>
     </div>
     <nav class="site-nav">
-      <a href="#hero">HOME</a>
-      <a href="#works">WORKS</a>
-      <a href="#about">ABOUT</a>
-      <a href="#contact">CONTACT</a>
+      <a href="index.html" class="active">HOME</a>
+      <a href="works.html">WORKS</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
     </nav>
   </header>
 
-  <!-- 1. 大まかな表紙（ファーストビュー）エリア -->
-  <section id="hero" class="hero-section">
+  <!-- 表紙メインビジュアル -->
+  <main class="hero-section">
     <div class="hero-content">
       <h2 class="hero-tagline">Abstract art based on Japanese calligraphy.</h2>
       <p class="hero-sub">Explore the continuous archive.</p>
-      <a href="#works" class="hero-scroll-btn">ENTER ARCHIVE ↓</a>
+      <a href="works.html" class="hero-scroll-btn">ENTER ARCHIVE →</a>
     </div>
-  </section>
-
-  <!-- メインコンテンツ（左右にたっぷり余白を取るコンテナ） -->
-  <main class="main-container">
-
-    <!-- 2. 作品アーカイブセクション -->
-    <section id="works" class="archive-section">
-      <div class="section-header">
-        <h3 class="section-heading">WORKS ARCHIVE</h3>
-        <!-- カレンダージャンプUI -->
-        <div class="calendar-search">
-          <label for="date-picker">JUMP TO DATE:</label>
-          <input type="date" id="date-picker">
-        </div>
-      </div>
-
-      <!-- 3列グリッド（JavaScriptが自動生成） -->
-      <div class="archive-grid" id="artwork-grid"></div>
-    </section>
-
-    <!-- 3. ABOUT セクション（後から文章を変更可能） -->
-    <section id="about" class="info-section">
-      <h3 class="section-heading">ABOUT</h3>
-      <div class="info-body">
-        <p>ここに作者のプロフィールやステートメント、経歴などを記載できます。後から自由にテキストを変更可能です。</p>
-      </div>
-    </section>
-
-    <!-- 4. CONTACT セクション（後からリンクやアドレスを変更可能） -->
-    <section id="contact" class="info-section">
-      <h3 class="section-heading">CONTACT</h3>
-      <div class="info-body">
-        <p>For inquiries, commissions, or exhibition requests, please contact via email or social channels below.</p>
-        <p class="contact-email"><a href="mailto:your-email@example.com">your-email@example.com</a></p>
-        <div class="social-links">
-          <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-          <a href="#" target="_blank" rel="noopener">Ko-fi</a>
-        </div>
-      </div>
-    </section>
-
   </main>
 
-  <!-- フッター -->
-  <footer class="site-footer">
-    <p>&copy; YOUR NAME. All rights reserved.</p>
-  </footer>
+  <!-- すべてのページの右下に固定表示するInstagramアイコン -->
+  <aside class="fixed-instagram">
+    <a href="https://instagram.com/your-username" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+    </a>
+  </aside>
 
-  <script src="file_list.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>

@@ -5,16 +5,20 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth; /* メニュークリック時のスムーズスクロール */
-}
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
   background-color: #ffffff;
   color: #1a1a1a;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  padding-top: 90px; /* 固定ヘッダーの分だけ上の空間を空ける */
+}
+
+/* ホーム画面だけ背景を少し引き締める場合（真っ白にしたい場合は削除可） */
+body.home-body {
+  background-color: #0d0d0d;
+  color: #ffffff;
+  padding-top: 0;
 }
 
 a {
@@ -27,7 +31,7 @@ a:hover {
   opacity: 0.6;
 }
 
-/* --- ヘッダー --- */
+/* --- 固定ヘッダー --- */
 .site-header {
   position: fixed;
   top: 0;
@@ -41,6 +45,11 @@ a:hover {
   backdrop-filter: blur(5px);
   z-index: 900;
   border-bottom: 1px solid #f0f0f0;
+}
+
+.home-body .site-header {
+  background: rgba(13, 13, 13, 0.95);
+  border-bottom: 1px solid #222;
 }
 
 .site-title {
@@ -59,23 +68,29 @@ a:hover {
   font-size: 0.8rem;
   letter-spacing: 2px;
   font-weight: 300;
-  color: #555;
+  color: #666;
   text-transform: uppercase;
 }
 
-.site-nav a:hover {
+.home-body .site-nav a {
+  color: #aaa;
+}
+
+.site-nav a.active, .site-nav a:hover {
   color: #000;
 }
 
-/* --- 1. 大まかな表紙（ヒーローセクション） --- */
+.home-body .site-nav a.active, .home-body .site-nav a:hover {
+  color: #fff;
+}
+
+/* --- 表紙（Home）セクション --- */
 .hero-section {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #0d0d0d; /* アーティストサイトらしい引き締まったダーク背景（白背景にしたい場合は #fff に変更可能） */
-  color: #ffffff;
   padding: 0 20px;
 }
 
@@ -102,19 +117,19 @@ a:hover {
   padding-bottom: 4px;
 }
 
-/* --- メインコンテナ（PCで左右に十分な余白を持たせる設定） --- */
+/* --- メインコンテナ（PCで左右に十分な余白） --- */
 .main-container {
-  max-width: 1500px;         /* 全体の最大幅 */
-  margin: 0 auto;            /* 左右中央寄せ */
-  padding: 100px 80px 140px 80px; /* 左右にたっぷり 80px の余白を確保 */
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 40px 80px 140px 80px; /* 左右に80pxの余白 */
 }
 
-/* セクション共通見出し */
-.section_header {
+/* --- 作品一覧グリッド（3列） --- */
+.section-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 40px;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .section-heading {
@@ -122,16 +137,7 @@ a:hover {
   letter-spacing: 3px;
   font-weight: 500;
   color: #888;
-  margin-bottom: 25px;
   text-transform: uppercase;
-}
-
-/* カレンダー検索UI */
-.archive-controls, .section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
 }
 
 .calendar-search {
@@ -153,11 +159,10 @@ a:hover {
   color: #333;
 }
 
-/* --- 3列グリッドレイアウト --- */
 .archive-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 50px; /* カード同士の間隔も贅沢に取る */
+  gap: 50px;
 }
 
 .work-card {
@@ -189,15 +194,14 @@ a:hover {
   letter-spacing: 1px;
 }
 
-/* --- ABOUT & CONTACT セクション --- */
-.info-section {
-  margin-top: 140px;
-  padding-top: 60px;
-  border-top: 1px solid #eee;
-  max-width: 800px; /* テキストは読みやすいように少し幅を絞る */
+/* --- About / Contact ページ用セクション --- */
+.info-page-section {
+  max-width: 800px;
+  margin-top: 40px;
 }
 
 .info-body {
+  margin-top: 30px;
   font-size: 1rem;
   font-weight: 300;
   color: #444;
@@ -209,12 +213,31 @@ a:hover {
   font-weight: 400;
 }
 
-.social-links {
-  margin-top: 20px;
+/* --- 右下固定のInstagramアイコン --- */
+.fixed-instagram {
+  position: fixed;
+  bottom: 35px;
+  right: 40px;
+  z-index: 950;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   display: flex;
-  gap: 20px;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.fixed-instagram:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+}
+
+.fixed-instagram svg {
+  color: #1a1a1a;
 }
 
 /* --- フッター --- */
@@ -227,7 +250,7 @@ a:hover {
   border-top: 1px solid #f0f0f0;
 }
 
-/* --- モーダル（拡大表示）のスタイル --- */
+/* --- モーダル（拡大表示） --- */
 .image-modal {
   display: none;
   position: fixed;
@@ -281,7 +304,7 @@ a:hover {
   pointer-events: none;
 }
 
-/* --- レスポンシブ（スマホ対応） --- */
+/* --- スマホ対応 --- */
 @media (max-width: 768px) {
   .site-header {
     padding: 20px;
@@ -293,15 +316,19 @@ a:hover {
     font-size: 0.7rem;
   }
   .main-container {
-    padding: 60px 20px 80px 20px; /* スマホでは左右の余白を狭くする */
+    padding: 30px 20px 80px 20px;
   }
   .archive-grid {
-    grid-template-columns: 1fr; /* スマホでは1列に */
+    grid-template-columns: 1fr;
     gap: 30px;
   }
-  .section-header, .archive-controls {
+  .section-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
+  }
+  .fixed-instagram {
+    bottom: 20px;
+    right: 20px;
   }
 }
