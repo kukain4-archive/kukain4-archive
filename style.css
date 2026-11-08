@@ -147,45 +147,53 @@ header {
 
 /* --- モーダル（拡大表示）のスタイル --- */
 .image-modal {
-  display: none; /* 初期状態は非表示 */
+  display: none;
   position: fixed;
   z-index: 1000;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.95); /* 背景の透過を減らしてより黒くする */
-  flex-direction: column; /* 縦並びにして画像とテキストを入れる */
+  background-color: rgba(0, 0, 0, 0.95);
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  padding: 20px;
+  padding: 30px 20px; /* 上下にゆったりとした余白を持たせる */
 }
 
 .image-modal img {
   max-width: 90%;
-  max-height: 80vh; /* テキストが入るスペースを空けるために少し調整 */
+  max-height: 78vh; /* 画像が大きすぎず、下にキャプション用の空間を確保 */
   object-fit: contain;
-  border-radius: 4px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* 拡大画面下の作品情報（連番と日付） */
+/* 拡大画面下の作品情報（ギャラリーのキャプション風） */
 .modal-info {
-  margin-top: 15px;
-  color: #fff;
-  font-size: 1.1rem;
-  letter-spacing: 1px;
+  margin-top: 18px;                   /* 画像との絶妙な距離感 */
+  color: rgba(255, 255, 255, 0.85);   /* 視認性の高い上品なホワイトグレー */
+  font-size: 1.05rem;                 /* 小さすぎず、ハッキリ読めるサイズ */
+  font-weight: 300;                   /* 細めのフォントで野暮ったさを消す */
+  letter-spacing: 3px;                /* 字間を広げてモダンに */
   display: flex;
-  gap: 15px;
-  pointer-events: none; /* クリックが背景に抜けるようにする */
+  gap: 12px;                          /* 番号と日付の間隔をゆったり取る */
+  align-items: center;
+  pointer-events: none;
+}
+
+/* セパレーター（斜線やドット）の雰囲気を調整 */
+.modal-separator {
+  color: rgba(255, 255, 255, 0.4);    /* 区切り線は少し薄めにして主役を邪魔しない */
+  font-weight: 200;
 }
 
 .image-modal .close-hint {
   position: absolute;
-  top: 20px;
-  right: 30px;
-  color: #fff;
+  top: 25px;
+  right: 35px;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 2rem;
   pointer-events: none;
 }
