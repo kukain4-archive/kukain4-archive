@@ -1,0 +1,108 @@
+/* 全体の基本設定（モノクロ・シンプル） */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #000000; /* 黒背景で作品を引き立てる */
+  color: #ffffff;            /* 白文字 */
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* ヘッダー・プロフィール領域 */
+header {
+  max-width: 1200px;
+  margin: 0 auto 60px auto;
+  padding: 40px 0 20px 0;
+  border-bottom: 1px solid #333333; /* 控えめな区切り線 */
+}
+
+.site-title {
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.profile-text {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  max-width: 600px;
+  margin-bottom: 16px;
+}
+
+.contact-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin-right: 20px;
+  border-bottom: 1px solid #ffffff;
+  transition: opacity 0.2s ease;
+}
+
+.contact-links a:hover {
+  opacity: 0.6;
+}
+
+/* モザイク・グリッドレイアウト（スマホ/PC対応） */
+.archive-grid {
+  display: grid;
+  /* スマホを含むすべての画面で強制的に「3列」にする */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px; /* タイル同士の隙間を少し狭くしてスマホでもスッキリ見せる */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+}
+
+/* PCなどの広い画面ではタイルの最小サイズを少し広げる */
+@media (min-width: 768px) {
+  .archive-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+}
+
+/* 各作品カードのスタイル */
+.work-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background-color: #111111;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.work-card:hover {
+  opacity: 0.85;
+}
+
+/* 正方形のサムネイル枠 */
+.work-thumbnail {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #222222;
+  object-fit: cover;
+  display: block;
+}
+
+/* 作品情報のテキスト */
+.work-info {
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #888888;
+  background-color: #050505;
+}
+
+.work-date {
+  font-family: monospace;
+}
