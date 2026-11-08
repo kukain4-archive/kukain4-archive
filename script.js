@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
       targetCard.classList.add("highlight");
       setTimeout(() => targetCard.classList.remove("highlight"), 2000);
     } else {
-      alert("該当する日付の作品が見つかりませんでした。");
+      alert("No artwork found for this date.");
     }
   });
 });
