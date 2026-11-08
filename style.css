@@ -7,8 +7,8 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: #000000; /* 黒背景で作品を引き立てる */
-  color: #ffffff;            /* 白文字 */
+  background-color: #000000;
+  color: #ffffff;
   line-height: 1.6;
   padding: 20px;
 }
@@ -18,7 +18,7 @@ header {
   max-width: 1200px;
   margin: 0 auto 60px auto;
   padding: 40px 0 20px 0;
-  border-bottom: 1px solid #333333; /* 控えめな区切り線 */
+  border-bottom: 1px solid #333333;
 }
 
 .site-title {
@@ -49,23 +49,13 @@ header {
   opacity: 0.6;
 }
 
-/* モザイク・グリッドレイアウト（スマホ/PC対応） */
+/* モザイク・グリッドレイアウト（スマホ含む3列固定） */
 .archive-grid {
   display: grid;
-  /* スマホを含むすべての画面で強制的に「3列」にする */
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px; /* タイル同士の隙間を少し狭くしてスマホでもスッキリ見せる */
+  gap: 8px;
   max-width: 1200px;
   margin: 0 auto;
-}
-}
-
-/* PCなどの広い画面ではタイルの最小サイズを少し広げる */
-@media (min-width: 768px) {
-  .archive-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-  }
 }
 
 /* 各作品カードのスタイル */
